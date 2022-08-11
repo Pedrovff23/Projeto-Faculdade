@@ -7,8 +7,17 @@ app = Flask(__name__)
 def ola_mundo():
     # criar uma variavel com o meu nome
     nome = "Pedro Victor"
-    produtos = [
-        {"nome": "Ração", "preco": 199.99},
-        {"nome": "Playstation", "preco": 5000}]
-    return render_template("alo.html", produtos=produtos, nome=nome), 200
 
+    produtos = [
+        {"nome": "Produto 1", "preco": "R$ ***"},
+        {"nome": "Produto 2", "preco": "R$ ***"},
+        {"nome": "Produto 3", "preco": "R$ ***"},
+        {"nome": "Produto 4", "preco": "R$ ***"},
+        {"nome": "Produto 5", "preco": "R$ ***"},
+        {"nome": "Produto 6", "preco": "R$ ***"},
+        {"nome": "Produto 7", "preco": "R$ ***"},
+        {"nome": "Produto 8", "preco": "R$ ***"},
+        {"nome": "Produto 9", "preco": "R$ ***"},
+    ]
+
+    return render_template("alo.html", produtos=produtos, nome=nome), 200
