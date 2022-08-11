@@ -1,5 +1,6 @@
 # Projeto-Faculdade
-Curso de extensão Python Avançado para web com flask
+Curso de extensão Python Avançado para web com flask.</br>
+Projeto em desenvolvimento
 
 # Tecnologias usuadas
 ![](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) 
