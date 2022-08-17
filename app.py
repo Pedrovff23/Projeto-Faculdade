@@ -25,6 +25,7 @@ def rota_raiz():
 
 
 # Nova Rota Teste
+@app.route("/teste/<variavel>")
 @app.route("/teste")
-def rota_nova():
-    return "Nova Rota teste", 200
+def rota_nova(variavel = ""):
+    return "Nova Rota teste<br>Variavél: {}".format(variavel), 200
