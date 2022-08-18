@@ -62,7 +62,7 @@ def rota_validar_login():
     if request.form["usuario"] == "pedro" and request.form["senha"] == "123456":
         session["usuario"] = request.form["usuario"]
         session["codigo"] = 1
-        return redirect(url_for("acesso_restrito"))
+        return redirect(url_for("rota_acesso_restrito"))
     else:
         return "Usuário/senha inválidos, digite novamente.", 200
 
@@ -70,6 +70,7 @@ def rota_validar_login():
 # Rota para área restrita
 @app.route("/restrito")
 def rota_acesso_restrito():
+
     if session["codigo"] == 1:
 
         return "Bem-Vindo á area restrita!!<br>Usúario: {}<br>Código: {}" \
