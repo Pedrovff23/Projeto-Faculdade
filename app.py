@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
+# Criando uma chave de criptografia
+app.secret_key = "c!ds@%kc*&%nds@dsa{wd"
 
 produtos = [
     {"nome": "Produto 1", "preco": "R$ ***"},
@@ -47,3 +49,30 @@ def rota_form_recebe():
     else:
         return "Não pode chamer direto no GET", 200
 
+
+# Rota login
+@app.route("/login")
+def rota_login():
+    return render_template("login.html"), 200
+
+
+# Rota validar login
+@app.route("/login_validar", methods=["POST"])
+def rota_validar_login():
+    if request.form["usuario"] == "pedro" and request.form["senha"] == "123456":
+        session["usuario"] = request.form["usuario"]
+        session["codigo"] = 1
+        return redirect(url_for("acesso_restrito"))
+    else:
+        return "Usuário/senha inválidos, digite novamente.", 200
+
+
+# Rota para área restrita
+@app.route("/restrito")
+def rota_acesso_restrito():
+    if session["codigo"] == 1:
+
+        return "Bem-Vindo á area restrita!!<br>Usúario: {}<br>Código: {}" \
+                   .format(session["usuario"], session["codigo"]), 200
+    else:
+        return "Acesso inválido", 200
