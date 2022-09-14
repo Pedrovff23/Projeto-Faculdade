@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 app = Flask(__name__)
 
 # Criando uma chave de criptografia
-app.secret_key = "c!ds@%kc*&%nds@dsa{wd"
+app.secret_key = "c!ds@%kc*&%nds@dsa{wdp"
 
 produtos = [
     {"nome": "Produto 1", "preco": "R$ ***"},
