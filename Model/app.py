@@ -1,31 +1,43 @@
-
-
 from flask import Flask, render_template, request, session, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
-# Criando uma chave de criptografia
+# Criando uma chave de criptografia para o cookie
 app.secret_key = "c!ds@%kc*&%nds@dsa{wd"
 
-produtos = [
-    {"nome": "Produto 1", "preco": "R$ ***"},
-    {"nome": "Produto 2", "preco": "R$ ***"},
-    {"nome": "Produto 3", "preco": "R$ ***"},
-    {"nome": "Produto 4", "preco": "R$ ***"},
-    {"nome": "Produto 5", "preco": "R$ ***"},
-    {"nome": "Produto 6", "preco": "R$ ***"},
-    {"nome": "Produto 7", "preco": "R$ ***"},
-    {"nome": "Produto 8", "preco": "R$ ***"},
-    {"nome": "Produto 9", "preco": "R$ ***"},
-]
+# Apontar para um banco de dados
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Produto.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+
+class Produto(db.Model):
+    id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
+    nome = db.Column('nome', db.String(150))
+    preco = db.Column('preco', db.Float)
+
+    def __repr__(self):
+        return f'Produto(id = {self.id}, nome = {self.nome}, preco = {self.preco})'
+
+
+if __name__ == 'app':
+    db.create_all()
+    p1 = Produto(nome='Mochila', preco=1250)
+    db.session.add(p1)
+    db.session.commit()
+
+
+# Query para selecionar todos os produtos
+produtos = Produto.query.all()
 
 
 # Rota Raiz
 @app.route("/")
 def rota_raiz():
+
     # criar uma variavel com o meu nome
     nome = "Pedro Victor"
-
     return render_template("alo.html", produtos=produtos, nome=nome), 200
 
 
@@ -73,10 +85,10 @@ def rota_validar_login():
 # Rota para área restrita
 @app.route("/restrito")
 def rota_acesso_restrito():
-
     if session["codigo"] == 1:
 
         return "Bem-Vindo á area restrita!!<br>Usúario: {}<br>Código: {}" \
                    .format(session["usuario"], session["codigo"]), 200
     else:
         return "Acesso inválido", 200
+
