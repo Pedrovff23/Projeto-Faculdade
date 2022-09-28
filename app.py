@@ -1,5 +1,5 @@
 from flask import Flask
-from rotas import rotas_blueprint
+from rotas.rotas import rotas_blueprint
 from Flask_sqlalchemy import db
 
 
