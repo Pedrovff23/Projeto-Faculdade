@@ -5,7 +5,7 @@ from model.Model_db import Pessoa
 rotas_blueprint = Blueprint('rotas', __name__, template_folder='templates')
 
 
-# Rota Raiz
+# Rota raiz
 @rotas_blueprint.route("/")
 def rota_raiz():
     db.create_all()
@@ -44,7 +44,7 @@ def rota_validar_dados():
     return redirect(url_for(".rota_raiz"))
 
 
-# Rota Excluir pessoa no banco de dados
+# Rota excluir pessoa no banco de dados
 @rotas_blueprint.route("/deletar/<int:id>", methods=["GET"])
 def deletar_pessoa(id):
 
