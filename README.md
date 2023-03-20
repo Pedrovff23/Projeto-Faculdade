@@ -16,5 +16,3 @@ tem como objetivo criar um CRUD utilizando as funcionalidades desenvolvida duran
 ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Jinja](https://img.shields.io/badge/jinja-white.svg?style=for-the-badge&logo=jinja&logoColor=black)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
-
-![2](https://user-images.githubusercontent.com/55757037/226370511-21250146-8fe2-472d-9b6c-8a7c31c35397.png)
